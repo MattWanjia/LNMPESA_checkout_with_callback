@@ -14,7 +14,7 @@ def c2b_transact():
         "business_shortcode": "174379", #from developers portal
         "passcode": "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",#from developers portal
         "amount": "1", # choose amount preferrably KSH 1
-        "phone_number":"254791802040", #phone number to be prompted to pay
+        "phone_number":"", #phone number to be prompted to pay
         "reference_code": "",#Code to inform the user of services he/she is paying for.
         "callback_url": "[YOUR_URL]", # cllback url should be exposes. for testing putposes you can route on host 0.0.0.0 and set the callback url to be https://youripaddress:yourport/endpoint
         "description": "[Description]" #a description of the transaction its optional
@@ -26,19 +26,19 @@ def c2b_transact():
 
 @app.route('/')
 def checkout():
-    access_token = "EJypZRgreVXM7N97jzkRL1z0a0iL"
+    access_token = "<access token>"
     api_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
     headers = {"Authorization": "Bearer %s" % access_token}
     request = {
         "BusinessShortCode": "174379",
-        "Password": "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjEwNTAyMDgzNDMw",
-        "Timestamp": "20210502083430",
+        "Password": "<base64encoded(174379 + passkey + timestamp )>",
+        "Timestamp": "YYYYMMDDHHMMSS",
         "TransactionType": "CustomerPayBillOnline",
         "Amount": "1",
-        "PartyA": "254791802040",
+        "PartyA": "<your number>",
         "PartyB": "174379",
-        "PhoneNumber": "254791802040",
-        "CallBackURL": "https://43fcaf0d0e32.ngrok.io/callback",
+        "PhoneNumber": "<your number>",
+        "CallBackURL": "<callback_url>",
         "AccountReference": "Test",
         "TransactionDesc": "Test"
     }
